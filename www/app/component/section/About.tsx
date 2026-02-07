@@ -22,7 +22,7 @@ export default function About({ content, image, card }: AboutProps) {
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start center", "end start"],
+    offset: ["start center", "end end"],
   });
 
   /* ---------------- SECTION ANIMATION ---------------- */
@@ -112,7 +112,7 @@ export default function About({ content, image, card }: AboutProps) {
             // style={{ width: imageWidth }}
             className="flex justify-center overflow-hidden rounded-xl mt-20"
           >
-            <div className="h-200 w-435 border-2 border-black"></div>
+            <div className="h-200 w-435 "></div>
             {/* <Image
               src={image}
               width={1000}
