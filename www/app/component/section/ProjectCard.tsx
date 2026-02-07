@@ -15,7 +15,6 @@ const ProjectCard = () => {
             image={item.image}
             description={item.description}
             skills={item.skills}
-            color={item.color}
           />
         );
       })}
