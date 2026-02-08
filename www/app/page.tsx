@@ -20,6 +20,7 @@ import Experience from "./component/section/Experience";
 import SmoothScrollProvider from "@/lib/smoothScroll";
 import Project from "./component/section/Project";
 import ProjectCard from "./component/section/ProjectCard";
+import ContactSection from "./component/section/Contact";
 
 export default async function HomePage() {
   // const page = await client.fetch(PAGE_QUERY, {
@@ -36,9 +37,7 @@ export default async function HomePage() {
         <RenderSection key={i} section={section} />
       ))}
       <ProjectCard />
-      <div className="h-screen flex justify-center text-5xl items-center bg-green-200">
-        This is contact page
-      </div>
+      <ContactSection />
     </SmoothScrollProvider>
   );
 }
