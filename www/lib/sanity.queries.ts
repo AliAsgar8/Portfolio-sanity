@@ -19,8 +19,15 @@ export const PAGE_QUERY = `
     },
 
     _type == "about" => {
+     aboutContent,
     "image": image.asset -> url,
      about,
+    skill[]->{
+      _id,
+       title,
+      level,
+      "icon": icon.asset -> url
+    },
      aboutCard[] -> {
      _id,
      title,
@@ -28,16 +35,19 @@ export const PAGE_QUERY = `
      }
     },
     
-    _type == "skillsSection" => {
-      "skills": *[_type == "skill"]
-    },
 
     _type == "experienceSection" => {
       "experiences": *[_type == "experience"]
     },
 
     _type == "projectsSection" => {
-      "projects": *[_type == "project"]
+      "projects": *[_type == "project"]{
+        _id,
+        title,
+        description,
+        "image": image.asset -> url,
+        techStack
+      }
     }
   }
 }

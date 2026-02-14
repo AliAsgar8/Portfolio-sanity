@@ -9,15 +9,24 @@ import {
 import { useRef } from "react";
 import SkillCard from "./SkillCard";
 import Image from "next/image";
-import { AboutCard } from "@/app/src/type/sanity";
+import { AboutCard, Skill } from "@/app/src/type/sanity";
+import AboutSection from "./AboutSection";
 
 type AboutProps = {
   image: string;
+  aboutContent: PortableTextBlock[];
   content: PortableTextBlock[];
   card: AboutCard[];
+  skill: Skill[];
 };
 
-export default function About({ content, image, card }: AboutProps) {
+export default function About({
+  content,
+  image,
+  card,
+  aboutContent,
+  skill,
+}: AboutProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll({
@@ -39,8 +48,8 @@ export default function About({ content, image, card }: AboutProps) {
   /* ---------------- IMAGE EXPAND ---------------- */
   const imageWidthValue = useTransform(
     scrollYProgress,
-    [0.15, 0.45],
-    ["20%", "70%"],
+    [0.15, 0.35],
+    ["30%", "90%"],
   );
 
   const imageWidth = useSpring(imageWidthValue, {
@@ -68,12 +77,12 @@ export default function About({ content, image, card }: AboutProps) {
 
   return (
     <>
+      <AboutSection aboutContent={aboutContent} components={components} />
       <motion.section
         id="about"
         ref={containerRef}
-        className="relative bg-neutral-900 overflow-hidden"
+        className="relative bg-[#1e1e1e] overflow-hidden border-t border-white"
       >
-        {/* SVG */}
         <svg
           viewBox="0 0 272 529"
           fill="none"
@@ -108,21 +117,21 @@ export default function About({ content, image, card }: AboutProps) {
             </motion.div>
           </div>
           {/* IMAGE */}
-          <motion.div
-            // style={{ width: imageWidth }}
-            className="flex justify-center overflow-hidden rounded-xl mt-20"
-          >
-            <div className="h-200 w-435 "></div>
-            {/* <Image
-              src={image}
-              width={1000}
-              height={800}
-              alt="Portfolio Image"
-              priority
-              className="object-cover sm:h-[70vh]"
-            /> */}
-          </motion.div>
-
+          <div className="flex justify-center">
+            <motion.div
+              style={{ width: imageWidth }}
+              className="w-full flex justify-center items-center overflow-hidden rounded-xl mt-20"
+            >
+              <Image
+                src={image}
+                width={1000}
+                height={800}
+                alt="Portfolio Image"
+                priority
+                className="object-cover sm:h-screen w-screen"
+              />
+            </motion.div>
+          </div>
           {/* TEXT */}
           <div className="container grid grid-cols-12 pt-10">
             <div className="grid col-span-6 gap-y-5">
@@ -131,9 +140,28 @@ export default function About({ content, image, card }: AboutProps) {
           </div>
 
           {/* CONTINUOUS TEXT */}
+          <div className="container flex flex-wrap gap-2 sm:gap-3 pt-2">
+            {skill.map((item, index) => (
+              <span
+                key={index}
+                className="
+                px-3 sm:px-4 py-1.5
+                text-xs sm:text-sm
+                font-medium
+                bg-gray-100 text-gray-700
+                rounded-full border border-gray-200
+                hover:bg-black hover:text-white
+                transition-all duration-300
+              "
+              >
+                {item.title}
+              </span>
+            ))}
+          </div>
         </motion.div>
       </motion.section>
-      <SkillCard card={card} />
+      {/* SKILL CARD */}
+      {/* <SkillCard card={card} /> */}
     </>
   );
 }

@@ -23,7 +23,7 @@ export const page = defineType({
       name: 'sections',
       title: 'Page Sections',
       type: 'array',
-      of: [{type: 'hero'}, {type: 'about'}, {type: 'skillsSection'}, {type: 'experienceSection'}],
+      of: [{type: 'hero'}, {type: 'about'}, {type: 'experienceSection'}, {type: 'projectsSection'}],
     }),
   ],
 })

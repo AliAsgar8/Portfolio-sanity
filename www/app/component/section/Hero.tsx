@@ -9,7 +9,7 @@ type HeroProps = {
   content: PortableTextBlock[];
 };
 
-export default function Hero({ title, content }: HeroProps) {
+export default function Hero({ content }: HeroProps) {
   const components: PortableTextComponents = {
     block: {
       h1: ({ children }) => (

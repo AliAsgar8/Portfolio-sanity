@@ -1,42 +1,24 @@
-// import Header from "@/app/component/layout/Header";
-// import Hero from "@/app/component/section/Hero";
-// import About from "@/app/component/section/About";
-
-// export default function Home() {
-//   return (
-//     <>
-//       <Hero />
-//       <About />
-//     </>
-//   );
-// }
-
 import RenderSection from "./component/section/RenderSection";
 import Header from "./component/layout/Header";
-import { getPage } from "@/lib/sanity.fetch";
+import { getHeader, getPage } from "@/lib/sanity.fetch";
 import { PageSection } from "./src/type/sanity";
-import About from "./component/section/About";
-import Experience from "./component/section/Experience";
-import SmoothScrollProvider from "@/lib/smoothScroll";
-import Project from "./component/section/Project";
-import ProjectCard from "./component/section/ProjectCard";
+import SmoothScrollProvider from "@/app/component/smoothScroll";
 import ContactSection from "./component/section/Contact";
+import AboutSection from "./component/section/AboutSection";
 
 export default async function HomePage() {
-  // const page = await client.fetch(PAGE_QUERY, {
-  //   slug: "/",
-  // });
   const page = await getPage();
-
-  console.log("page", page); // ← DEBUG HERE
+  const headerData = await getHeader();
+  console.log("headerData", headerData);
 
   return (
     <SmoothScrollProvider>
-      <Header />
+      <Header logo={headerData.logoUrl} navigation={headerData.navigation} />
       {page.sections?.map((section: PageSection, i: number) => (
         <RenderSection key={i} section={section} />
       ))}
-      <ProjectCard />
+      {/* <div className="h-screen "></div> */}
+      {/* <AboutSection /> */}
       <ContactSection />
     </SmoothScrollProvider>
   );

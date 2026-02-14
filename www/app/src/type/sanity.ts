@@ -1,3 +1,5 @@
+import { skill } from './../../../../cms/schemaTypes/skill';
+import { aboutCard } from "./../../../../cms/schemaTypes/aboutCard";
 import { PortableTextBlock } from "@portabletext/types";
 
 /* ===== DOCUMENTS ===== */
@@ -19,8 +21,9 @@ export interface Experience {
 export interface Project {
   _id: string;
   title: string;
-  slug: { current: string };
   description: string;
+  techStack: string[];
+  image: string;
 }
 
 export interface AboutCard {
@@ -42,7 +45,9 @@ export interface AboutSection {
   title: string;
   image: string;
   about: PortableTextBlock[];
+  aboutContent: PortableTextBlock[];
   aboutCard: AboutCard[];
+  skill: Skill[];
 }
 
 export interface SkillsSection {

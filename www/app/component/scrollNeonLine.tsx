@@ -17,10 +17,10 @@ export default function ScrollNeonLine({ targetRef }: Props) {
   return (
     <div className="absolute inset-0 pointer-events-none top-56">
       <div className="absolute left-1/2 top-0 h-full flex items-start">
-        <div className="w-0.75 h-full bg-black opacity-40 absolute"></div>
+        <div className="w-0.75 h-full bg-white opacity-40 absolute"></div>
 
         <motion.div
-          className="w-0.75  bg-[#E3FF54] shadow-[0_0_12px_#00f0ff] origin-top absolute"
+          className="w-0.75  bg-[#E3FF54] shadow-[0_0_12px_#00f0ff]  absolute"
           style={{ height: neonHeight }}
         />
       </div>
